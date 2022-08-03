@@ -46,6 +46,8 @@ jobs:
         run: docker compose exec -T php bin/console doctrine:schema:validate --skip-sync
       - name: Jest
         run: docker compose exec -T pwa yarn test --ci --passWithNoTests
+      - name: Change branch
+        run: git switch master
       - name: Fetch
         run: git fetch origin main:main
       - name: Merge

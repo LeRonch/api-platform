@@ -50,3 +50,5 @@ jobs:
         run: git fetch origin main:main
       - name: Merge
         run: git merge master
+      - name: Push on master
+        run: git push

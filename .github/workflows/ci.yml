@@ -46,11 +46,16 @@ jobs:
         run: docker compose exec -T php bin/console doctrine:schema:validate --skip-sync
       - name: Jest
         run: docker compose exec -T pwa yarn test --ci --passWithNoTests
-      - name: Change branch
-        run: git switch master
-      - name: Fetch
-        run: git fetch origin main:main
-      - name: Merge
-        run: git merge master
-      - name: Push on master
-        run: git push
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          github_token: ${{ secrets.CI_TOKEN }}
+      # - name: Change branch
+      #   run: git switch master
+      # - name: Fetch
+      #   run: git fetch origin main:main
+      # - name: Merge
+      #   run: git merge master
+      # - name: Push on master
+      #   run: git push
